@@ -25,8 +25,18 @@ namespace Server.Game
 			Monster monster = ObjectManager.Instance.Add<Monster>();
 			monster.CellPos = new Vector2Int(5, 5);
 			EnterGame(monster);
+
+			TestTimer();
 		}
 
+		// TEST
+		void TestTimer()
+		{
+			Console.WriteLine("TestTimer");
+			PushAfter(100, TestTimer);
+		}
+
+		// 누군가 주기적으로 호출해줘야 한다
 		public void Update()
 		{
 			foreach (Monster monster in _monsters.Values)
@@ -38,6 +48,8 @@ namespace Server.Game
 			{
 				projectile.Update();
 			}
+
+			Flush();
 		}
 
 		public void EnterGame(GameObject gameObject)
